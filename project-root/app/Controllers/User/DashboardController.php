@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Controllers\User;
-use App\Controllers\BaseController;
+use App\Controllers\PageController;
 
 
-class DashboardController extends BaseController
+class DashboardController extends PageController
 {
     public function index()
     {

@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Controllers\User;
-use App\Controllers\BaseController;
+use App\Controllers\PageController;
 //use CodeIgniter\Controller;
 use App\Models\UserModel;
 
 
-class LoginController extends BaseController
+class LoginController extends PageController
 {
     public function index()
     {
