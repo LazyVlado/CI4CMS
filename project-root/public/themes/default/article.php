@@ -1,6 +1,12 @@
 
-<h1><?= $pageName; ?></h1>
+<h1>
+    <?= $pageName; ?>
+</h1>
 
 <p>
-<?= $pageTypeData['article']; ?>
+    <?= $article; ?>
 </p>
+
+<?php
+//    dmp(  ) ;
+?>

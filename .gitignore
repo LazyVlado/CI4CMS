@@ -1,0 +1,12 @@
+/db.txt
+/project-root/app/Config/Database.php
+/project-root/env
+/.idea/.gitignore
+/.idea/.name
+/.idea/CI4 CMS.iml
+/.idea/deployment.xml
+/.idea/modules.xml
+/.idea/php.xml
+/.idea/phpunit.xml
+/.idea/vcs.xml
+/.idea/watcherTasks.xml

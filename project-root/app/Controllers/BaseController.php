@@ -62,9 +62,9 @@ class BaseController extends Controller
         parent::initController($request, $response, $logger);
         $this->setSettings();
         helper(['My_helper']);
-        $session = session();
-//dmp( $session->get('isSignedIn') );
+//        $session = session();
         $page = $this->getPageByPageUri();
+
         if($page){
             echo view('common/header' , $page);
             echo view('' . $page['view'] , $page);
@@ -94,12 +94,23 @@ class BaseController extends Controller
         if(empty($pageData)){
             return false;
         }
-
         $pageData['view'] = strtolower( $pageData['pageType'] );
         $pageTypeModel = model('App\Models\\' . camelize($pageData['pageType']) . 'Model', false);
-        if($pageTypeModel) {
-            $pageData['pageTypeData'] = $pageTypeModel->where('pageID', $pageData['pageID'])->first();
+
+        if($pageTypeModel && $pageTypeModel->table) {
+//            $pageData['pageTypeData'] = $pageTypeModel->where('pageID', $pageData['pageID'])->first();
+            $pageTypeData = $pageTypeModel->where('pageID', $pageData['pageID'])->first();
+            $pageData = array_merge($pageData, $pageTypeData);
         }
+        elseif($pageTypeModel && !$pageTypeModel->table) {
+//            $pageData['pageTypeData'] = $pageTypeModel->getPageTypeData( $pageData['pageID'] );
+            $pageTypeData = $pageTypeModel->getPageTypeData( $pageData['pageID'] );
+            $pageData = array_merge($pageData, $pageTypeData);
+        }
+        else{
+
+        }
+//        dmp($pageData);
 
         return $pageData;
     }

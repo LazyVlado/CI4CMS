@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Models;
-use CodeIgniter\Database\ConnectionInterface;
 use CodeIgniter\Model;
-use CodeIgniter\Validation\ValidationInterface;
+use App\Models\ArticleModel;
 
-class ArticleModel extends Model
+
+class HomepageModel extends Model
 {
 //    public $table = 'article';
 //    public $primaryKey = 'pageID';
@@ -32,10 +32,11 @@ class ArticleModel extends Model
 
             ),
         );
-        $article = $this->db->query("SELECT * FROM article a JOIN page p ON p.pageID = a.pageID WHERE a.pageID = '" . $pageID . "'");
-        $dbData = $article->getResultArray();
-        $ageTypeData = array_merge($ageTypeData, $dbData[0]);
-        return $ageTypeData;
+        $articles = $this->db->query("SELECT a.article, a.galleryID, p.pageName, p.pageUri FROM article a JOIN page p ON p.pageID = a.pageID limit 8");
+        $dbData['articles'] = $articles->getResultArray();
+//        dmp($dbData);
+//        $ageTypeData = array_merge($ageTypeData, $dbData[0]);
+        return $dbData;
     }
 
 }
